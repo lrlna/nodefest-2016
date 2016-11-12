@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Building Interactive npm Command Line Modules</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+    </style>
+    <link rel="stylesheet" href="./src/style.css"/>
+  </head>
+  <body>
+    <textarea id="source">
+      class: middle, dark
+      # .big-one[.yellow[Building Interactive npm Command Line Applications]]
+
+      ---
+      class: middle, dark, center
+      # .big-one[![wave](./src/images/wave.png) &nbsp &nbsp &nbsp .yellow[NodeFest]]
+
+      ---
+      class: middle, dark, center
+
+      # .big-one[![sassyLady](./src/images/sassyLady.png) I am .yellow[[@_lrlna](https://twitter.com/_lrlna)]]
+
+      ---
+      class: middle
+
+      # .orange-border[![computer](./src/images/computer.png), &nbsp &nbsp ![team](./src/images/team.png)]
+
+      # .small-media[.orange-border[[Small Media Foundation](https://smallmedia.org.uk/)] ![small media](./src/images/smallmedia.svg)]
+
+      ---
+      class: middle, center, dark
+
+      # ![canada](./src/images/canada.png)&nbsp ![rain](./src/images/rain.png) &nbsp .yellow-font[-->] &nbsp ![uk](./src/images/uk.png)&nbsp![rain](./src/images/rain.png)
+
+      ---
+      class: middle, dark, light
+      # .big-one[.brown[Building Interactive npm Command Line Applications]]
+
+      ---
+      class: center, middle, light
+      # .align-centre[.brown[I <3]&nbsp![linux](./src/images/penguin.png)]
+
+      ---
+      class: center, middle, light
+      # .align-centre[.brown[4G of Ram]&nbsp&nbsp![computer](./src/images/computer.png)]
+
+      ---
+      class: center, middle, light
+      # .align-centre[.brown[I <3 CLIs]]
+
+      ---
+      class: middle, light
+      # .brown-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ---
+      class: middle, light
+      # .brown-font[.javascript[tar -xfv /path/to/file]]
+      #### where x === --get
+
+      ---
+      class: middle, light
+      # .brown-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      --
+      # .yellow[lol wut?]
+
+      ---
+      class: middle, dark
+      # .yellow[Monday]
+
+      # .yellow-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ---
+      class: middle, dark
+      # .yellow[Tuesday]
+
+      # .yellow-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ---
+      class: middle, dark
+      # .yellow[Wednesday]
+
+      # .yellow-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ---
+      class: middle, dark
+      # .yellow[Thursday]
+
+      # .yellow-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ---
+      class: center, middle, light
+
+      ![glasses](./src/images/glasses.png) ![crown](./src/images/crown.png) ![nailCare](./src/images/nail-care.png)
+
+      ---
+      class: middle, light
+      # .brown[Friday]
+
+      # .brown-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ---
+      class: middle, dark
+      # .yellow-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+
+      ## .yellow[lol wut?]
+
+      ---
+      class: middle, light
+      # ![ok](./src/images/ok.png),&nbsp![cool](./src/images/cool.png)
+      # .brown[so what's a command line application ?]
+
+      ---
+      class: middle, light
+
+      # .brown[git]
+      # .brown-font[.javascript[git rebase i veryCoolSHA]]
+
+      ---
+      class: middle, light
+
+      # .brown[npm]
+      # .brown-font[.javascript[npm i coolModule@latest --save]]
+
+      ---
+      class: middle, light
+
+      # .brown[vagrant]
+      # .brown-font[.javascript[vagrant halt processID]]
+
+      ---
+      class: middle, light
+      background-image: url(./src/images/ls.gif)
+      background-size: cover
+
+      # .yellow[ls]
+      # .yellow-font[.javascript[ls -al]]
+
+      ---
+      class: middle
+      background-image: url(./src/images/cowsay.gif)
+      background-size: cover
+
+      # .yellow[cow-say]
+      # .yellow-font[.javascript[cowsay hello web unleashed]]
+      .citation[https://www.npmjs.com/package/cowsay]
+
+      ---
+      class: middle, dark
+
+      # .yellow[wombat]
+      # .yellow-font[.javascript[wombat hello web unleashed]]
+      .citation[https://www.npmjs.com/package/wombatjs]
+
+      ---
+      class: middle
+      background-image: url(./src/images/wombatjs.gif)
+      background-size: cover
+
+      .citation[https://www.npmjs.com/package/wombatjs]
+
+      ---
+      class: middle, dark
+      # ![ok](./src/images/ok.png),&nbsp![cool](./src/images/cool.png)
+      # .yellow[so what's a command line application ?]
+
+      ---
+      class: middle
+      > Command Line Interface is a means of interacting with a computer program where the user *issues commands to the program* in the form of successive lines of text.
+
+      .blockquote-footer[[the internet](https://en.wikipedia.org/wiki/Command-line_interface)]
+
+      ---
+      class: middle, light
+
+      # .brown-font[issues commands to the program]
+
+      ---
+      class: middle, light
+
+      # .brown-font[~~issues commands to~~ interacts with the program]
+
+      ---
+      class: middle
+
+      # .yellow[Some] of us work quite a bit in terminal and command line setting
+
+      ---
+      class: middle, light
+
+      # But not .yellow[everyone]
+
+      ---
+      class: middle, dark
+
+      # .yellow-font[.javascript[yourCoolCli -rgb global-status --latest -m]]
+      # .yellow[lol wut?]
+
+      ---
+      class: middle, light
+
+      # .brown[We care about user experience in the web, but not in our terminals]
+
+      ---
+      class: middle, light
+
+      # .brown[let's fix it]
+
+      ---
+      class: bottom, center
+      background-image: url(./src/images/excited-baby.gif)
+      background-size: cover
+
+      ---
+      class: middle, light
+      # .brown[Irina's guide to interactivity&trade;]
+      ### .brown-font[aka level up your CLI skillz]
+
+      ---
+      class: middle, dark
+
+      # ![cool](./src/images/cool.png) .yellow-font[,]&nbsp
+      #.yellow[so you want to write a command line module?]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![_lrlna-what-clis](./src/images/lrlna-what-clis.png)]
+
+      .citation[[https://twitter.com/_lrlna/status/763135592154660864](https://twitter.com/_lrlna/status/763135592154660864)]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![trott](./src/images/trott.png)]
+
+      .citation[[https://twitter.com/trott/status/763145652368879616](https://twitter.com/trott/status/763145652368879616)]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![ceejbot](./src/images/ceejbot.png)]
+
+      .citation[[https://twitter.com/ceejbot/status/763140341620801537](https://twitter.com/ceejbot/status/763140341620801537)]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![rickycodes](./src/images/rickycodes.png)]
+
+      .citation[[https://twitter.com/rickycodes/status/763243646854565888](https://twitter.com/rickycodes/status/763243646854565888)]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![othiym23](./src/images/othiym23.png)]
+
+      .citation[[https://twitter.com/othiym23/status/763144318911512576](https://twitter.com/othiym23/status/763144318911512576)]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![evilchili](./src/images/evilchili.png)]
+
+      .citation[[https://twitter.com/evilchili/status/763172629477859329](https://twitter.com/evilchili/status/763172629477859329)]
+
+      ---
+      class: middle, dark
+
+      .twitter-img[![brianloveswords](./src/images/brianloveswords.png)]
+
+      .citation[[https://twitter.com/brianloveswords/status/763245592726401024](https://twitter.com/brianloveswords/status/763245592726401024)]
+
+      ---
+      class: dark
+
+      ---
+      class: center, middle, dark
+
+      # .align-center[![robot](./src/images/robot.png) .yellow-font[-------> bash?]]
+
+      ---
+      class: center, middle, dark
+
+      # .align-center[![robot](./src/images/robot.png) .yellow-font[-------> ruby?]]
+
+      ---
+      class: center, middle, dark
+
+      # .align-center[![robot](./src/images/robot.png) .yellow-font[-------> perl?]]
+
+      ---
+      class: center, middle, light
+
+      # .align-center[![robot](./src/images/robot.png) .brown-font[-------> node]]
+
+      ---
+      class: center, middle
+
+      # .align-centre[![scream](./src/images/scream.png) argument parsing]
+
+      ---
+      class: center, middle, dark
+
+      # .yellow[.javascript[process.argv.slice(2)]]
+
+      ---
+      class: center, middle
+      background-image: url(./src/images/parser.gif)
+      background-size: cover
+      background-position: left
+
+      ---
+      class: center, middle, light
+
+      # .align-center[![robot](./src/images/robot.png) .brown-font[------->node]]
+
+      ---
+      class: middle, light
+      # .brown[Irina's guide to interactivity&trade;]
+      ### .brown-font[aka level up your CLI skillz]
+
+      ---
+      class: middle, dark
+      # .yellow[Level 1]
+
+      # ![scream](./src/images/scream.png) .yellow-font[argument parsing]]]]
+
+      ---
+      class: bottom
+      background-image: url(./src/images/yargs.png)
+      background-size: cover
+      background-position: left
+
+      .citation[yargs.js.org]
+
+      ---
+      class: middle
+      ### .yellow[https://www.npmjs.com/package/argv]
+      ### .yellow[https://www.npmjs.com/package/minimist]
+      ### .yellow[https://www.npmjs.com/package/meow]
+
+      ---
+      class: bottom
+      background-image: url(./src/images/yargs.png)
+      background-size: cover
+      background-position: left
+
+      .citation[yargs.js.org]
+
+      ---
+      class: middle, light
+      # .brown[Irina's guide to interactivity&trade;]
+      ### .brown-font[aka level up your CLI skillz]
+
+      ---
+      class: middle, light
+
+      # We use .brown[options] on daily basis
+
+      --
+      ```shell
+      npm install -g yargs@latest
+      ```
+
+      ---
+      class: middle, dark
+      # .yellow[Level 2]
+
+      # .yellow-font[Give your options] .yellow[aliases]
+
+      ---
+      class: middle, dark
+      ```javascript
+        var argv = require('yargs')
+        .usage('Usage: $0 -n [string] -f [string]')
+        .option('n', {
+            alias: 'name',
+            describe: 'Twitter name of your choosing',
+            type: 'string',
+            demand: true
+        })
+      ```
+      .citation[https://www.npmjs.com/package/twitter-node-name]
+
+      ---
+      class: middle, dark
+
+      ```shell
+      twitter-node-name --name ira<2728>
+      ```
+      # .yellow[or]
+      ```shell
+      twitter-node-name -n ira<2728>
+      ```
+
+      .citation[https://www.npmjs.com/package/twitter-node-name]
+
+      ---
+      class: middle, dark
+      # .yellow[Level 3]
+
+      # .yellow-font[Set up] .yellow[default] .yellow-font[values]
+
+      ---
+      class: middle
+
+      ```javascript
+      .option("yellow", {
+          alias: "y",
+          describe: "yellow wombat",
+          type: "boolean",
+          default: true
+      })
+      ```
+      .citation[https://www.npmjs.com/package/wombatjs]
+
+      ---
+      class: middle, dark
+      # .yellow[Level 4]
+
+      # .yellow-font[Provide a] .yellow[help] .yellow-font[menu]
+      ![pray](./src/images/pray.png)
+
+      ---
+      class: middle, light
+      ```javascript
+      var argv = require('yargs')
+         // all your options
+        .help()
+        .argv
+      ```
+
+      ---
+      class: middle, light
+      ```javascript
+      Usage: twitter-node-name -n [string] -f [string]
+
+      Options:
+      -f, --file  File with your Access Tokens                   [string] [required]
+      -n, --name  Twitter name of your choosing                  [string] [required]
+
+      Missing required arguments: f, n
+      ```
+
+      .citation[https://www.npmjs.com/package/twitter-node-name]
+
+      ---
+      class: middle, dark
+      # .yellow[Level 5]
+
+      # .yellow-font[Get] .yellow[input] .yellow-font[from your users]
+
+      ---
+      class: middle, light
+      ```javascript
+      prompt.start()
+      var property = {
+          name: "yesno",
+          message: message,
+          validator: /y[es]*|n[o]?/,
+          warning: "Please respond with yer or no",
+          default: "yes"
+      }
+
+      prompt.get(property, function(err, result) {
+          if (err) console.log(err)
+          done(result)
+      })
+
+      ```
+      ---
+      class: middle, light
+
+      ```bash
+      prompt: Are you sure you want to overwrite: (yes)
+      ```
+
+      ---
+      class: middle, light
+
+      # .align-center[.brown[wow p cool] ![sparkles](./src/images/sparkles.png) .brown[prompt] ![sparkles](./src/images/sparkles.png)]
+
+      .citation[https://www.npmjs.com/package/prompt]
+
+      ---
+      class: middle, light
+      ```javascript
+      // where setuprc is your questions file
+      promzard(setuprc, function(err, data) {
+        // do <2728> magic <2728> with data
+      }
+      // setuprc
+      module.exports = {
+          "displayName": prompt("Hey stranger, what shall you be called?", function(displayName) {
+              return displayName;
+          })
+      }
+      ```
+      ---
+      class: middle, light
+      ```bash
+      Hey stranger, what shall you be called?: irina
+      ```
+
+      ---
+      class: middle, light
+
+      # .align-center[.brown[wow p cool] ![sparkles](./src/images/sparkles.png) .brown[prompt] ![sparkles](./src/images/sparkles.png)]
+
+      .citation[https://www.npmjs.com/package/prompt]
+
+      ---
+      class: middle, dark
+      # .yellow[Level 6]
+
+      # .yellow-font[Why not use] .yellow[commands] .yellow-font[?]
+      ![sassyLady](./src/images/sassyLady.png)
+
+      ---
+      class: middle, light
+
+      # .brown-font[We can make options] .brown[descriptive]
+
+      ---
+      class: middle, light
+
+      #.brown-font[but they are not] .brown[*interactive*]
+
+      ---
+      class: middle, light
+
+      # user issues commands to the program
+
+      ---
+      class: middle, light
+
+      # user ~~issues commands to~~ .brown[interact] with the program
+
+      ---
+      class: middle, light
+
+      # .align-center[.brown[wow p cool] ![sparkles](./src/images/sparkles.png) .brown[commands] ![sparkles](./src/images/sparkles.png)]
+
+      .citation[https://www.npmjs.com/package/prompt]
+
+      ---
+      class: middle, light
+      # .brown[yargs] .brown-font[lets you build out command modules]
+
+      ---
+      class: middle, light
+      ```javascript
+      yargs.command(require('text'))
+        .help()
+        .argv
+      ```
+
+      ---
+      class: middle, light
+      ```javascript
+      exports.command = 'text <contact> <message>'
+      exports.describe = 'text message your contact'
+      exports.builder = {
+        contact: {
+          default: 'mom'
+        },
+        message: {
+          default: 'brunch on sunday?'
+        }
+      }
+      exports.handler = function (argv) {
+        // do <2728> magic <2728>
+      }
+      ```
+      ---
+      class: middle, dark
+      # .yellow[Level 7]
+
+      # .yellow-font[Just add] .yellow[colour]
+      ![nailCare](./src/images/nail-care.png)
+
+      ---
+      class: middle, light
+
+      # .align-center[.brown[wow p cool] ![sparkles](./src/images/sparkles.png) .brown[colour] ![sparkles](./src/images/sparkles.png)]
+
+      .citation[https://www.npmjs.com/package/cli-color]
+
+      ---
+      class: middle, light
+
+      ```javascript
+      clc.yellow(wombat + concatArgvs(argv._))
+      ```
+
+      ---
+      class: middle, light
+
+      # .align-center[.brown[wow p cool] ![sparkles](./src/images/sparkles.png) .brown[colour] ![sparkles](./src/images/sparkles.png)]
+
+      .citation[https://www.npmjs.com/package/chalk]
+
+      ---
+      class: middle, light
+
+      ```javascript
+      chalk.yellow(wombat + concatArgvs(argv._))
+      ```
+
+      ---
+      class: middle, dark
+      # .yellow[Level 8]
+
+      # .yellow-font[Can we get the user to] .yellow[interact] .yellow-font[with the program other than prompts?]
+
+      ---
+      class: middle, light
+
+      # .align-center[.brown[wow p cool] ![sparkles](./src/images/sparkles.png) .brown[inquirer] ![sparkles](./src/images/sparkles.png)]
+
+      .citation[https://www.npmjs.com/package/inquirer]
+
+      ---
+      class: middle, light
+      ```javascript
+      var prompt = inquirer.createPromptModule();
+      prompt({type: 'list', message: 'yourCoolQuestionPrompt' })
+        .then(// do <2728> magic <2728>);
+       
+      //{type: 'list'}
+      //{type: 'checkbox'}
+      ```
+
+      ---
+      background-image: url(./src/images/magic.gif)
+      background-size: cover
+      class: bottom, center 
+
+      # .brown[alt='magic']
+
+      ---
+      class: middle, dark
+
+      ---
+      class: middle, light
+
+      # .brown[Get out there, and build command line interfaces]
+
+      ---
+      class: middle, dark
+
+      # .big-one[.yellow[Thank you] ![sparkles](./src/images/sparkles.png)]
+      ## .yellow[[@_lrlna](https://twitter.com/_lrlna)]
+      ## .yellow[lrlna.github.io/fitc-2016]
+
+
+    </textarea>
+
+    <script src="./src/remark.js"></script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+  </html>
