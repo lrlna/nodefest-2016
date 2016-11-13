@@ -24,11 +24,9 @@
       # .big-one[![sassyLady](./src/images/sassyLady.png) I am .brown[[@_lrlna](https://twitter.com/_lrlna)]]
 
       ---
-      class: middle
+      class: middle, light, center
 
-      # .orange-border[![computer](./src/images/computer.png), &nbsp &nbsp ![team](./src/images/team.png)]
-
-      # .small-media[.orange-border[[Small Media Foundation](https://smallmedia.org.uk/)] ![small media](./src/images/smallmedia.svg)]
+      # .big-one[.brown[80%] ![ramen](./src/images/ramen.png)]
 
       ---
       class: middle, center, dark
@@ -283,7 +281,7 @@
       # .align-centre[![scream](./src/images/scream.png) argument parsing]
 
       ---
-      class: center, middle, dark
+      class: middle, dark
 
       # .yellow[.javascript[process.argv.slice(2)]]
 
@@ -318,10 +316,9 @@
       .citation[yargs.js.org]
 
       ---
-      class: middle
-      ### .yellow[https://www.npmjs.com/package/argv]
-      ### .yellow[https://www.npmjs.com/package/minimist]
-      ### .yellow[https://www.npmjs.com/package/meow]
+      background-image: url(./src/images/parser.gif)
+      background-size: cover
+      background-position: left
 
       ---
       class: bottom
@@ -353,7 +350,7 @@
       # .yellow-font[Give your options] .yellow[aliases]
 
       ---
-      class: middle, dark
+      class: middle
       ```javascript
         var argv = require('yargs')
         .usage('Usage: $0 -n [string] -f [string]')
@@ -376,6 +373,13 @@
       ```shell
       twitter-node-name -n ira<2728>
       ```
+      .citation[https://www.npmjs.com/package/twitter-node-name]
+      ---
+      class: middle, dark
+
+      background-image: url(./src/images/twitter-node-name.gif)
+      background-size: cover
+      background-position: left
 
       .citation[https://www.npmjs.com/package/twitter-node-name]
 
@@ -406,7 +410,7 @@
       ![pray](./src/images/pray.png)
 
       ---
-      class: middle, light
+      class: middle
       ```javascript
       var argv = require('yargs')
          // all your options
@@ -415,18 +419,29 @@
       ```
 
       ---
+      class: middle, dark
+
+      background-image: url(./src/images/twitter-node-help.gif)
+      background-size: cover
+      background-position: left
+
+      .citation[[https://www.npmjs.com/package/twitter-node-name](https://www.npmjs.com/package/twitter-node-name)]
+
+      ---
       class: middle, light
-      ```javascript
-      Usage: twitter-node-name -n [string] -f [string]
 
-      Options:
-      -f, --file  File with your Access Tokens                   [string] [required]
-      -n, --name  Twitter name of your choosing                  [string] [required]
+      # .brown[<argument>]
 
-      Missing required arguments: f, n
-      ```
+      --
+      # .brown[--option]
 
-      .citation[https://www.npmjs.com/package/twitter-node-name]
+      --
+      # .brown[command]
+
+      --
+      # .brown[[optional param]]
+
+      .citation[[http://docopt.org/](http://docopt.org/)]
 
       ---
       class: middle, dark
@@ -635,7 +650,7 @@
 
       # .big-one[.yellow[Thank you] ![sparkles](./src/images/sparkles.png)]
       ## .yellow[[@_lrlna](https://twitter.com/_lrlna)]
-      ## .yellow[lrlna.github.io/fitc-2016]
+      ## .yellow[lrlna.github.io/nodefest-2016]
 
 
     </textarea>
